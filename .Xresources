@@ -1,0 +1,108 @@
+!! ================================================================
+!! Xterm
+!! ================================================================
+
+!! General
+XTerm*termName: xterm-256color
+XTerm*scrollBar: False
+XTerm*cursorBlink: True
+XTerm*selectToClipboard: True
+XTerm*transparent: true
+
+!! Fonts and Encoding
+XTerm*utf8: True
+XTerm*locale: True
+XTerm*utf8Title: True
+XTerm*faceName: xft:DejaVu Sans Mono
+XTerm*faceNameDoublesize: xft:IPAGothic
+XTerm*faceSize: 9
+XTerm*scaleHeight: 1.08
+
+!! Color Scheme : Tomorrow Night
+!! https://github.com/chriskempson/tomorrow-theme
+
+XTerm*background: #1D1F21
+XTerm*foreground: #C5C8C6
+! black
+XTerm*color0: #282A2E
+XTerm*color8: #373B41
+! red
+XTerm*color1: #A54242
+XTerm*color9: #CC6666
+! green
+XTerm*color2: #8C9440
+XTerm*color10: #B5BD68
+! yellow
+XTerm*color3: #DE935F
+XTerm*color11: #F0C674
+! blue
+XTerm*color4: #5F819D
+XTerm*color12: #81A2BE
+! magenta
+XTerm*color5: #85678F
+XTerm*color13: #B294BB
+! cyan
+XTerm*color6: #5E8D87
+XTerm*color14: #8ABEB7
+! white
+XTerm*color7: #707880
+XTerm*color15: #C5C8C6
+
+XTerm*VT100.Translations: #override \
+      Shift Ctrl<Key>V: insert-selection(CLIPBOARD) \n\ 
+      Shift Ctrl<Key>V: insert-selection(PRIMARY) \n\ 
+      Shift<Btn1Down>: select-start() \n\ 
+      Shift<Btn1Motion>: select-extend() \n\ 
+      Shift<Btn1Up>: select-end(CLIPBOARD) \n\
+
+
+!! ~/.Xresources
+
+!!
+!! rxvt-unicode (urxvt)
+!!
+
+URxvt.geometry:             96x32
+URxvt.scrollBar:            false
+!!URxvt.scrollBar_right:      true
+!!URxvt.scrollBar_floating:   true
+!!URxvt.scrollstyle:          plain
+URxvt.cursorBlink:          true
+!!URxvt.cursorUnderline:      true
+URxvt.pointerBlank:         true
+URxvt.visualBell:           true
+URxvt.saveLines:            3000
+URxvt.fading:               10
+
+!! Font list and Spacing
+URxvt.font:                 xft:Dejavu Sans Mono-9,\
+                            xft:IPAGothic
+URxvt.letterSpace:          -1
+!URxvt.lineSpace:            0
+
+!! Color Scheme and Opacity - gruvbox-dark https://github.com/morhetz/gruvbox
+URxvt.depth:                32
+URxvt.color0:               [80]#282828
+URxvt.color1:               [80]#cc241d
+URxvt.color2:               [80]#98971a
+URxvt.color3:               [80]#d79921
+URxvt.color4:               [80]#458588
+URxvt.color5:               [80]#b16286
+URxvt.color6:               [80]#689d6a
+URxvt.color7:               [80]#a89984
+URxvt.color8:               [80]#928374
+URxvt.color9:               [80]#fb4934
+URxvt.color10:              [80]#b8bb26
+URxvt.color11:              [80]#fabd2f
+URxvt.color12:              [80]#83a598
+URxvt.color13:              [80]#d3869b
+URxvt.color14:              [80]#8ec07c
+URxvt.color15:              [80]#ebdbb2
+URxvt.foreground:           [80]#ebdbb2
+URxvt.background:           [80]#282828
+URxvt.colorIT:              [80]#8ec07c
+URxvt.colorBD:              [80]#d5c4a1
+URxvt.colorUL:              [80]#83a598
+URxvt.scrollColor:          [80]#504945
+!URxvt.troughColor:          [80]#3C3836
+

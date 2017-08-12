@@ -1,0 +1,9 @@
+find 
+open_with code
+filter 
+search fahma
+find hdok
+search dmenu
+find i3
+mkdir dotfiles
+mkdir .config
