@@ -1,0 +1,9 @@
+pulseaudio-ctl |\
+sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" | \
+gawk '
+$0~/sink muted/{if($5=="yes")v="MUTE"}
+$1~/^Volume/{v=$4"%"}
+$0~/Detected sink/{
+	if($4=="1")s="A";
+	else s="B"}
+END{print s":"v}'

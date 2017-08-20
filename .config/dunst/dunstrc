@@ -1,5 +1,6 @@
 [global]
-    font = Monospace 8
+    #font = Monospace 8
+    font = DejaVu Sans Mono 10
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -176,7 +177,8 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#222222"
-    foreground = "#888888"
+    #foreground = "#888888"
+    foreground = "#ffffff"
     timeout = 10
 
 [urgency_normal]

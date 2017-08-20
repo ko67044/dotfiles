@@ -7,3 +7,13 @@ search dmenu
 find i3
 mkdir dotfiles
 mkdir .config
+mkdir fonts
+rename pulseaudio-ctl__
+mkdir pulsu
+rename pulse
+relink /home/yito/dotfiles/.config/pulse/default.pa
+rename default.pa_
+
+rename htop_
+delete
+open_with k

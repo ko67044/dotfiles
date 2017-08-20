@@ -56,8 +56,6 @@ XTerm*VT100.Translations: #override \
       Shift<Btn1Up>: select-end(CLIPBOARD) \n\
 
 
-!! ~/.Xresources
-
 !!
 !! rxvt-unicode (urxvt)
 !!

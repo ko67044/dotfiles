@@ -31,6 +31,7 @@ for_window [instance="pavucontrol"] floating enable;
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 8
+#font pango:NasuM 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -51,11 +52,11 @@ bindsym $mod+Return exec ~/bin/run_urxvt
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #bindsym $mod+d exec --no-startup-id rofi -dmenu
 
 # change focus
@@ -147,10 +148,14 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        #bindsym j resize shrink width 10 px or 10 ppt
+        #bindsym k resize grow height 10 px or 10 ppt
+        #bindsym l resize shrink height 10 px or 10 ppt
+        #bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -168,14 +173,15 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        #status_command i3status
+        status_command i3blocks
         #tray_output primary
 	#position top
 }
 
 ##yito
 #fcitx start
-exec --no-startup-id /usr/bin/fcitx
+exec --no-startup-id fcitx-autostart
 #keyborad layout
 exec --no-startup-id setxkbmap -model chromebook_m_ralt
 #natural scroll
@@ -184,12 +190,15 @@ exec --no-startup-id xinput -set-prop "Cypress APA Trackpad (cyapa)" 452 1
 exec --no-startup-id compton -cbm 0.75
 #wallpaper
 #exec --no-startup-id feh --bg-scale ~/.config/wallpaper/nature-hd-wallpapers-blue-sky.jpg
-exec --no-startup-id feh --bg-scale /usr/share/xfce4/backdrops/Yellow_Jacket_by_Manuel_Frei.png
+exec --no-startup-id feh --bg-scale ~/.config/wallpaper/art205.jpg
+
+#hide mouse pointer 
+exec --no-startup-id unclutter -idle 1 -root
 
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
-exec xautolock -time 10 -locker 'i3lock /path/to/script' &
+#exec xautolock -time 10 -locker 'i3lock /path/to/script' &
 bindsym Control+mod1+l exec i3lock
 
 ##APP start
@@ -197,11 +206,11 @@ bindsym $mod+b exec google-chrome
 
 # Multimedia keys
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
-#bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-default-sink 1
-#bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-default-sink 2
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% ; exec --no-startup-id pkill -RTMIN+1 i3blocks #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% ; exec --no-startup-id pkill -RTMIN+1 i3blocks #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle ; exec --no-startup-id pkill -RTMIN+1 i3blocks # mute sound
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-default-sink 1; exec --no-startup-id pkill -RTMIN+1 i3blocks 
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id ~/bin/set_default_sink; exec --no-startup-id pkill -RTMIN+1 i3blocks 
 
 
 
@@ -213,6 +222,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 #bindsym XF86Sleep exec --no-startup-id systemctl suspend
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+2 i3blocks # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+2 i3blocks # decrease screen brightness
 

@@ -1,6 +1,11 @@
 # set PATH so it includes user's private bin directories
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
+#im
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
 #set wall paper
 #feh --bg-scale ~/.config/wallpaper/nature-hd-wallpapers-blue-sky.jpg
 #feh --bg-scale /usr/share/xfce4/backdrops/Yellow_Jacket_by_Manuel_Frei.png
