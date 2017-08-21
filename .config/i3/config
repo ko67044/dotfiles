@@ -52,11 +52,11 @@ bindsym $mod+Return exec ~/bin/run_urxvt
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #bindsym $mod+d exec --no-startup-id rofi -dmenu
 
 # change focus
@@ -187,7 +187,7 @@ exec --no-startup-id setxkbmap -model chromebook_m_ralt
 #natural scroll
 exec --no-startup-id xinput -set-prop "Cypress APA Trackpad (cyapa)" 452 1
 #compton start
-exec --no-startup-id compton -cbm 0.75
+exec --no-startup-id compton -cb
 #wallpaper
 #exec --no-startup-id feh --bg-scale ~/.config/wallpaper/nature-hd-wallpapers-blue-sky.jpg
 exec --no-startup-id feh --bg-scale ~/.config/wallpaper/art205.jpg
@@ -198,8 +198,8 @@ exec --no-startup-id unclutter -idle 1 -root
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
-#exec xautolock -time 10 -locker 'i3lock /path/to/script' &
-bindsym Control+mod1+l exec i3lock
+#exec --no-startup-id xautolock -time 1 -locker 'sleep 10 && xset dpms force off && i3lock'
+bindsym Control+mod1+l exec --no-startup-id sleep 1 && xset dpms force off && i3lock
 
 ##APP start
 bindsym $mod+b exec google-chrome

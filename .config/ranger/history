@@ -15,5 +15,5 @@ relink /home/yito/dotfiles/.config/pulse/default.pa
 rename default.pa_
 
 rename htop_
-delete
 open_with k
+delete
