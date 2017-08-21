@@ -201,7 +201,7 @@ exec --no-startup-id pasystray
 #exec --no-startup-id xautolock -time 1 -locker 'sleep 10 && xset dpms force off && i3lock'
 bindsym Control+mod1+l exec --no-startup-id sleep 1 && xset dpms force off && i3lock
 
-##APP start
+###APP start
 bindsym $mod+b exec google-chrome
 
 # Multimedia keys
