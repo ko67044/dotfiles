@@ -13,7 +13,9 @@ mkdir pulsu
 rename pulse
 relink /home/yito/dotfiles/.config/pulse/default.pa
 rename default.pa_
-
 rename htop_
 open_with k
 delete
+rename .spacemacs.bak
+
+paste_symlink .spacemacs

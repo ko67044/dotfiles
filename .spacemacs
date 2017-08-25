@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     php
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -54,7 +55,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(migemo)
+   dotspacemacs-additional-packages '(migemo mozc ddskk)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -132,10 +133,14 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   ;;dotspacemacs-default-font '("Source Code Pro"
+   ;;dotspacemacs-default-font '("NasuM"
+   ;;dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Source Han Code JP R"
                                :size 13
                                :weight normal
                                :width normal
+                               :slant normal
                                :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -355,7 +360,7 @@ you should place your code here."
       ;;with helm
       (with-eval-after-load "helm"
         (helm-migemo-mode +1)
-        )
+      )
   ;;;-------------------------------------------------------------
   )
 
