@@ -1,0 +1,6 @@
+#!/bin/bash
+#keyboard layout
+setxkbmap -model logitech_base
+xmodmap ~/.Xmodmap_k380
+#natural scroll
+xinput -set-prop "Yasuharu のトラックパッド" 452 1

@@ -1,0 +1,3 @@
+#!/bin/bash
+#keyboard layout
+setxkbmap -model logitech_base

@@ -1,0 +1,6 @@
+#!/bin/bash
+BT_SINK=$(pacmd list-sinks | \
+	sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"|grep index: | \
+	sed 's/^.*index: \([0-9]\)/\1/' | \
+	tail -1)
+pacmd set-default-sink $BT_SINK

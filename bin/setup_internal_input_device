@@ -1,0 +1,8 @@
+#!/bin/bash
+#keyboard layout
+#setxkbmap -model chromebook_m_ralt
+#xmodmap ~/.Xmodmap_internal
+
+#touchpad scroll
+xinput -set-prop "Cypress APA Trackpad (cyapa)" 273 -19 -19
+xinput -set-prop "Cypress APA Trackpad (cyapa)" 286 1

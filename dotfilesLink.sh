@@ -6,3 +6,5 @@ ln -sf ~/dotfiles/.config/fontconfig ~/.config/fontconfig
 ln -sf ~/dotfiles/.config/i3 ~/.config/i3
 ln -sf ~/dotfiles/.config/i3status ~/.config/i3status
 ln -sf ~/dotfiles/.config/ranger ~/.config/ranger
+ln -sf ~/dotfiles/bin ~/bin
+ln -sf ~/dotfiles/.bash_profile ~/.bash_profile
