@@ -6,6 +6,17 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
+#set keyboard
+setxkbmap -model chromebook_m
+#xmodmap -e "clear mod1"
+#xmodmap -e "clear mod4"
+#xmodmap -e "keycode 64 = Super_L"
+#xmodmap -e "add mod4 = Super_L"
+#xmodmap -e "add mod1 = Alt_R"
+
+#touchpad
+exec --no-startup-id xinput -set-prop "Cypress APA Trackpad (cyapa)" 452 1
+
 #set wall paper
 #feh --bg-scale ~/.config/wallpaper/nature-hd-wallpapers-blue-sky.jpg
 #feh --bg-scale /usr/share/xfce4/backdrops/Yellow_Jacket_by_Manuel_Frei.png

@@ -18,8 +18,8 @@ XTerm*utf8: True
 XTerm*locale: True
 XTerm*utf8Title: True
 XTerm*faceName: xft:DejaVu Sans Mono
-XTerm*faceNameDoublesize: xft:IPAGothic
-XTerm*faceSize: 9
+XTerm*faceNameDoublesize: xft:IPAexGothic
+XTerm*faceSize: 11
 XTerm*scaleHeight: 1.08
 
 !! Color Scheme : Tomorrow Night

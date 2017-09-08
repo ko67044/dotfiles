@@ -39,7 +39,7 @@ interval=30
 [memory]
 label=SWAP
 instance=swap
-separator=false
+#separator=false
 interval=30
 
 # Disk usage
@@ -65,14 +65,14 @@ interval=30
 [bandwidth]
 #instance=eth0
 interval=5
-separator=false
+#separator=false
 
-[wifi]
-command=~/.config/i3blocks/blocklet/wifi
+#[wifi]
+#command=~/.config/i3blocks/blocklet/wifi
 #instance=wlp3s0
 #label=W:
-instance=wlp1s0
-interval=10
+#instance=wlp1s0
+#interval=10
 
 # CPU usage
 #
@@ -88,7 +88,7 @@ separator=false
 #
 [temperature]
 #label=TEMP
-command=cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input | awk '{printf "%d°C", $1/1000}'
+command=cat /sys/devices/platform/coretemp.0/temp1_input | awk '{printf "%d°C", $1/1000}'
 interval=10
 
 #[load_average]
@@ -114,7 +114,8 @@ interval=30
 #command=/usr/share/i3blocks/volume 5% hw:1
 #command=pulseaudio-ctl full-status | gawk '$2=="no"{print $1"%"}$2=="yes"{print "MUTE"}'
 #command= pactl list sinks | grep '^[[:space:]]Volume:' | head -n 2 | tail -n 1 | sed -e 's,.* \([0-9][0-9]*%\).*,\1,'
-command=~/.config/i3blocks/blocklet/volume
+#command=~/.config/i3blocks/blocklet/volume
+command=volume get | head -1 | sed -e 's/Volume: \([0-9]*\)/\1%/'
 label=♪
 #instance=Master
 #instance=PCM
@@ -123,10 +124,10 @@ signal=1
 
 #backlight
 [backlight]
-command=xbacklight | awk '{printf "%2d%%", $1+0.5}'
-#command=xbacklight | sed 's/^\([0-9][0-9]\).*$/\1/'
+command=brightness
+#####command=xbacklight | sed 's/^\([0-9][0-9]\).*$/\1/'
 label=BL
-interval=once
+interval=10
 signal=2
 
 # Date Time

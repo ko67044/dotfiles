@@ -19,3 +19,4 @@ delete
 rename .spacemacs.bak
 
 paste_symlink .spacemacs
+open_with 

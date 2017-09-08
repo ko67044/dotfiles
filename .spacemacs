@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     html
      php
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -38,28 +39,36 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     ;; auto-completion
-     ;; better-defaults
+     auto-completion
+     better-defaults
      emacs-lisp
      git
      markdown
      org
-     ;;(shell :variables
-     ;;       shell-default-height 30
-     ;;       shell-default-position 'bottom)
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom
+            shell-default-height 30
+            shell-default-shell 'term
+            shell-enable-smart-eshell t)
      ;; spell-checking
      ;; syntax-checking
+     themes-megapack
      ;; version-control
+     twitter
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(migemo mozc ddskk)
+   dotspacemacs-additional-packages '(migemo mozc mozc-popup ac-mozc ddskk)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(firebelly-theme
+                                    niflheim-theme
+                                    pastels-on-dark-theme
+                                    tronesque-theme)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -127,20 +136,21 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(tangotango
+                         twilight-anti-bright
+                         toxi
+                         zenburn
+                         spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   ;;dotspacemacs-default-font '("Source Code Pro"
    ;;dotspacemacs-default-font '("NasuM"
-   ;;dotspacemacs-default-font '("Source Code Pro"
-   dotspacemacs-default-font '("Source Han Code JP R"
-                               :size 13
+   ;;dotspacemacs-default-font '("Source Han Code JP"
+   dotspacemacs-default-font '("Source Code Pro"
+                               :size 15
                                :weight normal
                                :width normal
-                               :slant normal
                                :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -315,30 +325,77 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;;;-------------------------------------------------------------
+  ;;; browser setting
+  ;;;-------------------------------------------------------------
+  (setq browse-url-browser-function 'browse-url-generic
+        engine/browser-function 'browse-url-generic
+        browse-url-generic-program "croutonurlhandler")
+  ;;;-------------------------------------------------------------
+  ;;; escape insert-mode key
+  ;;;-------------------------------------------------------------
+  (setq-default evil-escape-key-sequence "fd")
+  ;;;-------------------------------------------------------------
+  ;;; default browser
+  ;;;-------------------------------------------------------------
+  ;(setq browse-url-browser-function 'browse-url-generic
+  ;      browse-url-generic-program "croutonurlhandler")
+  ;;;-------------------------------------------------------------
   ;;; Mozc
   ;;;-------------------------------------------------------------
       (require 'mozc)
+      (require 'mozc-popup)
       (set-language-environment "japanese")
       (setq default-input-method "japanese-mozc")
-      (setq mozc-candidate-style 'overlay)
-    ; on
-      (global-set-key [henkan]
-                      (lambda () (interactive)
-                        (when (null current-input-method) (toggle-input-method))))
-     ; off
-      (global-set-key [muhenkan]
-                      (lambda () (interactive)
-                        (inactivate-input-method)))
-     ; event hook
-      (defadvice mozc-handle-event (around intercept-keys (event))
-        "Intercept keys muhenkan and zenkaku-hankaku, before passing keysto mozc-server (which the function mozc-handle-event does), toproperly disable mozc-mode."
-        (if (member event (list 'muhenkan))
-            (progn
-              (mozc-clean-up-session)
-              (toggle-input-method))
-          (progn ;(message "%s" event) ;debug
-            ad-do-it)))
-      (ad-activate 'mozc-handle-event)
+      (setq mozc-candidate-style 'popup)
+      ;入力モードで-----
+      (setq mozc-color "blue")
+
+      (defun mozc-change-cursor-color ()
+        (if mozc-mode
+            (set-cursor-color mozc-color)
+          (set-cursor-color nil)))
+
+      (add-hook 'input-method-activate-hook
+                (lambda () (mozc-change-cursor-color)))
+
+      (if (featurep 'key-chord)
+          (defadvice toggle-input-method (after my-toggle-input-method activate)
+            (mozc-change-cursor-color)))
+      ;-----------
+      ; on
+        (global-set-key [henkan]
+                        (lambda () (interactive)
+                          (when (null current-input-method) (toggle-input-method))))
+      ; off
+        (global-set-key [muhenkan]
+                        (lambda () (interactive)
+                          (inactivate-input-method)))
+      ; event hook
+        (defadvice mozc-handle-event (around intercept-keys (event))
+          "Intercept keys muhenkan and zenkaku-hankaku, before passing keysto mozc-server (which the function mozc-handle-event does), toproperly disable mozc-mode."
+          (if (member event (list 'muhenkan))
+              (progn
+                (mozc-clean-up-session)
+                (toggle-input-method))
+            (progn ;(message "%s" event) ;debug
+              ad-do-it)))
+        (ad-activate 'mozc-handle-event)
+
+  ;;;-------------------------------------------------------------
+  ;;; ac-mozc
+  ;;;-------------------------------------------------------------
+        ;;(ac-config-default)
+        (require 'ac-mozc)
+        ;;(define-key ac-mode-map (kbd "C-c C-SPC") 'ac-complete-mozc)
+        (add-to-list 'ac-modes 'org-mode)
+        (defun my-ac-mozc-setup ()
+          (setq ac-sources
+                '(ac-source-mozc ac-source-ascii-words-in-same-mode-buffers))
+          (set (make-local-variable 'ac-auto-show-menu) 0.3)
+          )
+
+        ;(add-hook 'org-mode-hook 'my-ac-mozc-setup)
+        (add-hook 'auto-complete-mode-hook 'my-ac-mozc-setup)
   ;;;-------------------------------------------------------------
   ;;; japanese environment
   ;;;-------------------------------------------------------------
