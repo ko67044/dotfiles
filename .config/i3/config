@@ -9,13 +9,14 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 ##yito basic
 new_window none
 new_float none
 for_window [class="URxvt"] border pixel 1
 for_window [class="XTerm"] border pixel 1
+for_window [class="Xfce4-terminal"] border pixel 1
 for_window [instance="pavucontrol"] floating enable;
 
 #Needed for i3-gaps
@@ -45,9 +46,9 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal -e fish
 #bindsym $mod+Return exec xterm
-bindsym $mod+Return exec ~/bin/run_urxvt
+#bindsym $mod+Return exec ~/bin/run_urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -191,7 +192,7 @@ bar {
 #exec --no-startup-id fcitx-autostart
 
 #keyborad layout
-#exec --no-startup-id setxkbmap -model chromebook_m
+exec --no-startup-id setxkbmap -model chromebook_m_ralt
 #exec --no-startup-id xmodmap -e "remove mod1 = Alt_L"
 #exec --no-startup-id xmodmap -e "remove mod1 = Meta_L"
 #exec --no-startup-id xmodmap -e "remove mod4 = Super_R"
@@ -200,22 +201,21 @@ bar {
 #exec --no-startup-id xmodmap -e "add mod4 = Super_L"
 
 #natural scroll
-#exec --no-startup-id xinput -set-prop "Cypress APA Trackpad (cyapa)" 452 1
+exec --no-startup-id xinput -set-prop "Cypress APA Trackpad (cyapa)" 452 1
 #compton start
 #exec --no-startup-id compton -cb
 #wallpaper
-#exec --no-startup-id feh --bg-scale ~/.config/wallpaper/nature-hd-wallpapers-blue-sky.jpg
-#exec --no-startup-id feh --bg-scale ~/.config/wallpaper/art205.jpg
+exec --no-startup-id feh --bg-scale ~/.config/wallpaper/pexels-photo-490466.jpeg
 
 #start initial terminal
-exec --no-startup-id ~/bin/run_urxvt
+exec --no-startup-id xfce4-terminal -e fish
 
 #hide mouse pointer 
 #exec --no-startup-id unclutter -idle 1 -root
 
-#exec --no-startup-id blueman-applet
-#exec --no-startup-id nm-applet
-#exec --no-startup-id pasystray
+exec --no-startup-id blueman-applet
+exec --no-startup-id nm-applet
+exec --no-startup-id pasystray
 #exec --no-startup-id xautolock -time 1 -locker 'sleep 10 && xset dpms force off && i3lock'
 #exec --no-startup-id xautolock -time 10 -locker 'sudo pm-suspend'
 #bindsym Control+$mod+l exec --no-startup-id  sleep 1 && xset dpms force off && i3lock
@@ -226,22 +226,23 @@ exec --no-startup-id ~/bin/run_urxvt
 
 # Multimedia keys
 # Pulse Audio controls
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% ; exec --no-startup-id pkill -RTMIN+1 i3blocks #increase sound volume
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% ; exec --no-startup-id pkill -RTMIN+1 i3blocks #decrease sound volume
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle ; exec --no-startup-id pkill -RTMIN+1 i3blocks # mute sound
-#bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-default-sink 1; exec --no-startup-id pkill -RTMIN+1 i3blocks 
-#bindsym Shift+XF86AudioLowerVolume exec --no-startup-id ~/bin/set_default_sink; exec --no-startup-id pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% ; exec --no-startup-id pkill -RTMIN+1 i3blocks #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% ; exec --no-startup-id pkill -RTMIN+1 i3blocks #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle ; exec --no-startup-id pkill -RTMIN+1 i3blocks # mute sound
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-default-sink 1; exec --no-startup-id pkill -RTMIN+1 i3blocks 
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id ~/bin/set_default_sink; exec --no-startup-id pkill -RTMIN+1 i3blocks 
 
 
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id volume up && pkill -RTMIN+1 i3blocks #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id volume down && pkill -RTMIN+1 i3blocks #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id volume mute toggle # mute sound
+###crouton
+#bindsym XF86AudioRaiseVolume exec --no-startup-id volume up && pkill -RTMIN+1 i3blocks #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id volume down && pkill -RTMIN+1 i3blocks #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id volume mute toggle # mute sound
+###crouton end
 
 # Sleep key
 #bindsym XF86Sleep exec --no-startup-id systemctl suspend
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id pkill -RTMIN+2 i3blocks # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id pkill -RTMIN+2 i3blocks # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 && pkill -RTMIN+2 i3blocks # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 && pkill -RTMIN+2 i3blocks # decrease screen brightness
 
