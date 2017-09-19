@@ -203,9 +203,9 @@ exec --no-startup-id setxkbmap -model chromebook_m_ralt
 #natural scroll
 exec --no-startup-id xinput -set-prop "Cypress APA Trackpad (cyapa)" 452 1
 #compton start
-#exec --no-startup-id compton -cb
+exec --no-startup-id compton -cb
 #wallpaper
-exec --no-startup-id feh --bg-scale ~/.config/wallpaper/pexels-photo-490466.jpeg
+exec --no-startup-id feh --bg-scale ~/dotfiles/wall-papers/pexels-photo-490466.jpeg
 
 #start initial terminal
 exec --no-startup-id xfce4-terminal -e fish
