@@ -1,0 +1,2 @@
+"xset r off; xte 'keyup space'; xte 'keydown Shift_L' 'key space' 'keyup Shift_L'; xset r on"
+  control+space
